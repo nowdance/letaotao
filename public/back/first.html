@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>乐淘后台管理系统首页</title>
   <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="lib/bootstrap-validator/css/bootstrapValidator.min.css"/>
+  <link rel="stylesheet" href="lib/nprogress/nprogress.css"/>
   <link rel="stylesheet" href="css/common.css"/>
 </head>
 <body>
@@ -42,8 +44,8 @@
 <div class="lt_main">
   <!-- 顶部通栏-->
   <div class="topbar">
-    <a class="pull-left" href="#"><span class="glyphicon glyphicon-align-justify "></span></a>
-    <a  class="pull-right" href="#"><span class="glyphicon glyphicon-log-out "></span></a>
+    <a class="pull-left btn_menu" href="javascript:;"><span class="glyphicon glyphicon-align-justify "></span></a>
+    <a  class="pull-right btn_logout" href="javascript:;"><span class="glyphicon glyphicon-log-out "></span></a>
   </div>
 
   <!--栅格系统 -->
@@ -51,16 +53,98 @@
     <!-- 面包屑导航/路径导航-->
     <ol class="breadcrumb">
       <li><a href="#">管理系统</a></li>
-      <li class="active">首页</li>
+      <li><a href="#">分类管理</a></li>
+      <li class="active">一级分类</li>
     </ol>
 
-    <!-- 图表区域-->
-  </div>
+    <!-- 内容表格区域-->
+    <div class="lt_content">
+      <button class="btn btn-default mb_20 btn_add">添加分类</button>
+      <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <td width="20%">序号</td>
+          <td width="80%">分类名称</td>
+        </tr>
+        </thead>
+        <tbody>
+        <!--挖个坑**准备模板-->
+        </tbody>
+      </table>
 
+      <!-- 分页模块-->
+      <div class="text-right">
+        <ul id="paginator"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 点击退出按钮弹出模态框-->
+<div class="modal fade" tabindex="-1" id="logoutModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">温馨提示</h4>
+      </div>
+      <div class="modal-body">
+        <p class="text-danger">
+          <span class="glyphicon glyphicon-info-sign"></span>
+          您确定要退出后台管理系统吗?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary btn_confirm">确定</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 
+<!--增加分类模态框板块-->
+<div class="modal fade" tabindex="-1" id="addModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">添加分类</h4>
+      </div>
+      <div class="modal-body">
+        <form id="form">
+          <div class="form-group">
+            <input type="text" class="form-control" name="categoryName" placeholder="请输入一级分类">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" form="form" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="submit" form="form" class="btn btn-primary btn_confirm">确定</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!--准备内容区域表格的模板 -->
+<script type="text/html" id="tab2">
+    {{each rows v i}}
+    <tr>
+      <td>{{(page-1)*size+i+1}}</td>
+      <td>{{v.categoryName}}</td>
+    </tr>
+    {{/each}}
+</script>
+
+<!--引包-->
 <script src="lib/jquery/jquery.min.js"></script>
-<script  src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<script src="lib/bootstrap-paginator/bootstrap-paginator.js"></script>
+<script src="lib/nprogress/nprogress.js"></script>
+<script src="lib/echarts/echarts.min.js"></script>
+<script src="lib/artTemplate/template-web.js"></script>
+<script src="js/common.js"></script>
+<script src="js/first.js"></script>
 </body>
 </html>
