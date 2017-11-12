@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>乐淘后台管理系统首页</title>
   <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="lib/bootstrap-validator/css/bootstrapValidator.min.css">
+  <link rel="stylesheet" href="lib/nprogress/nprogress.css">
   <link rel="stylesheet" href="css/common.css"/>
 </head>
 <body>
@@ -31,7 +33,8 @@
         </div>
       </li>
       <li>
-        <a href="product.html"><i class="glyphicon glyphicon-tags"></i>商品管理
+        <a href="product.html"><i class="glyphicon glyphicon-tags"></i>
+          商品管理
         </a>
       </li>
     </ul>
@@ -42,25 +45,131 @@
 <div class="lt_main">
   <!-- 顶部通栏-->
   <div class="topbar">
-    <a class="pull-left" href="#"><span class="glyphicon glyphicon-align-justify "></span></a>
-    <a  class="pull-right" href="#"><span class="glyphicon glyphicon-log-out "></span></a>
+    <a class="pull-left btn_menu" href="#"><span class="glyphicon glyphicon-align-justify "></span></a>
+    <a  class="pull-right btn_logout" href="#"><span class="glyphicon glyphicon-log-out "></span></a>
   </div>
+
 
   <!--栅格系统 -->
   <div class="container-fluid">
     <!-- 面包屑导航/路径导航-->
     <ol class="breadcrumb">
       <li><a href="#">管理系统</a></li>
-      <li class="active">首页</li>
+      <li><a href="#">分类管理</a></li>
+      <li class="active">二级分类</li>
     </ol>
 
-    <!-- 图表区域-->
-  </div>
+    <!-- 内容表格区域-->
+    <div class="lt_content">
+      <button class="btn btn-default mb_20 btn_add">添加分类</button>
+      <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <td width="10%">序号</td>
+          <td width="30%">一级分类名称</td>
+          <td width="30%">二级分类名称</td>
+          <td width="30%">二级分类LOGO</td>
+        </tr>
+        </thead>
+        <tbody>
+        <!--挖个坑**准备模板-->
+        </tbody>
+      </table>
 
+      <!-- 分页模块-->
+      <div class="text-right">
+        <ul id="paginator"></ul>
+      </div>
+    </div>
+  </div>
 </div>
 
 
+
+<!-- 点击退出按钮弹出模态框-->
+<div class="modal fade" tabindex="-1" id="logoutModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">温馨提示</h4>
+      </div>
+      <div class="modal-body">
+        <p class="text-danger">
+          <span class="glyphicon glyphicon-info-sign"></span>
+          您确定要退出后台管理系统吗?
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary btn_confirm">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--点击添加按钮弹出二级分类添加模态框 -->
+<div class="modal fade" tabindex="-1" id="addModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">添加分类</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="dropdown-text">一级分类</span>
+                <span class="caret"></span>
+                <input type="text" id="categoryId" name="categoryId"/>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">确认</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<!--准备模板渲染二级分类页面表格数据-->
+<script type="text/html" id="tab3">
+  {{each rows v i}}
+  <tr>
+    <td>{{(page-1)*size +i+1}}</td>
+    <td>{{v.categoryName}}</td>
+    <td>{{v.brandName}}</td>
+    <td><img src="{{v.brandLogo?v.brandLogo:'images/none.png'}}" width="50" height="50" alt=""/></td>
+  </tr>
+  {{/each}}
+</script>
+
 <script src="lib/jquery/jquery.min.js"></script>
-<script  src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<script src="lib/bootstrap-paginator/bootstrap-paginator.js"></script>
+<script src="lib/nprogress/nprogress.js"></script>
+<script src="lib/echarts/echarts.min.js"></script>
+<script src="lib/artTemplate/template-web.js"></script>
+<script src="js/common.js"></script>
+<script src="js/second.js"></script>
 </body>
 </html>
