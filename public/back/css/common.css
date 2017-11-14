@@ -103,6 +103,26 @@ a:link, a:visited, a:hover, a:active {
     font-size: 12px;
 }
 
+
+.lt_aside .nav a {
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    color: #ddd;
+    padding-left: 30px;
+    border: 3px solid transparent;
+}
+
+
+.lt_aside .nav a.now {
+    border-left-color: #069;
+    background-color: #1d1f21;
+    color: #fff;
+}
+
+.lt_aside .nav .child a {
+    padding-left: 50px;
+}
 /*主内容区*/
 .lt_main {
     width: 100%;
