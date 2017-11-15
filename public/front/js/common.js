@@ -47,4 +47,12 @@ var tools = {
         return this.getParamObj()[key];
     },
     //作业：var obj = {name:"zs", age:18, desc:"呵呵"}  转换成字符串  name=zs&age=18&desc=呵呵
+
+    //检测用户是否登录
+    checkLogin:function (data){
+      if(data.error === 400){
+          location.href = "login.html?retUrl="+location.href;
+          //打回登录页面时在url后拼接当前页面的信息,在用户登录后可以跳转到当前选中商品的页面
+      }
+    }
 }

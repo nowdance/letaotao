@@ -1,9 +1,6 @@
 /**
  * Created by 三界外的沉默 on 2017/11/13.
  */
-/**
- * Created by HUCC on 2017/11/13.
- */
 $(function () {
 
     var currentPage = 1;
@@ -34,23 +31,18 @@ $(function () {
         }
 
 
-
         $.ajax({
             type: "get",
             url: "/product/queryProduct",
             data: obj,
             success: function (data) {
-
-
                 setTimeout(function () {
                     console.log(data);
                     $(".lt_product").html(template("tpl", data));
                 }, 1000);
-
             }
         });
     }
-
     render();
 
 
@@ -62,17 +54,14 @@ $(function () {
             mui.toast("请输入搜索内容");
             return false;
         }
-
+        $(".lt_product").html('<div class="loading"> <span class="mui-icon mui-icon-spinner-cycle mui-spin"></span></div>');
 
         //点击搜索的时候，需要清空排序的条件
         $(".lt_sort a").removeClass("now").find("span").removeClass("fa-angle-up").addClass("fa-angle-down");
-
-
-
-        $(".lt_product").html('<div class="loading"></div>');
-
+         
         //重新渲染
         render();
+
     });
 
 
@@ -124,7 +113,7 @@ $(function () {
 
     //排序功能
     $(".lt_sort [data-type]").on("click", function () {
-
+        $(".lt_product").html('<div class="loading"></div>');
         //修改样式
         var $this = $(this);
         if($this.hasClass("now")){
@@ -136,7 +125,7 @@ $(function () {
             $(".lt_sort a").find("span").removeClass("fa-angle-up").addClass("fa-angle-down");
         }
 
-        $(".lt_product").html('<div class="loading"></div>');
+        $(".lt_product").html('<div class="loading"> <span class="mui-icon mui-icon-spinner-cycle mui-spin"></span></div>');
         render();
 
     });

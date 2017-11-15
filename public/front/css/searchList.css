@@ -45,14 +45,18 @@
 .loading {
     width: 40px;
     height: 40px;
-    border: 3px solid #069;
     position: absolute;
     left: 50%;
     transform: translate(-50%);
     top:200px;
     animation: play 1s ease-in-out infinite;
 }
-
+.loading span {
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    color: blue;
+}
 /*动画怎么写*/
 @keyframes play {
     from {
